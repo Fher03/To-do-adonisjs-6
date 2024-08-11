@@ -9,10 +9,20 @@
 
 import router from '@adonisjs/core/services/router'
 
-router.on('/').render('pages/home')
+router
+  .get('/', (ctx) => {
+    return ctx.view.render('pages/home')
+  })
+  .as('notes.show')
 
 router
-  .get('/movies', async () => {
-    return 'Just a Word'
+  .get('/notes/:id', (ctx) => {
+    return ctx.view.render('pages/notes/index', {
+      title: 'Mi primera Nota',
+      content: 'lorem ipsum',
+      creationDate: '11/08/24',
+      modifiedDate: '11/08/24',
+    })
   })
-  .as('movies.show')
+  .where('id', router.matchers.number())
+  .as('note.show')
