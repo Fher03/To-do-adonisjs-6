@@ -9,13 +9,15 @@
 </head>
 <body>
   @!component('components/nav')
-  <div class="container mt-5">
-    <h1 class="font-bold text-3xl text-black">My Notes</h1>
-    <div class="flex justify-center align-middle ">
-      @each(note in notes)
-        @!card({title: note.title, description: note.content, sendTo: route('note.show', [note.id])})
-      @end
+    <div class="w-3/5 mx-auto ">
+      <div class="container mx-auto grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+        <h1 class="my-5 col-span-full text-center font-bold text-3xl text-black">My Notes</h1>
+        @each(note in notes)
+          <div>
+            @!card({title: note.title, description: note.content, sendTo: route('note.show', [note.id])})
+          </div>
+        @end
+      </div>
     </div>
-  </div>
 </body>
 </html>

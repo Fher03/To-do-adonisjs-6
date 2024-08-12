@@ -21,5 +21,19 @@
     "content": "lorem ipsum",
     "creationDate": "11/08/24",
     "modifiedDate": "11/08/24"
+  },
+  {
+    "id": 4,
+    "title": "Hello",
+    "content": "This is a new Note",
+    "creationDate": "11/08/24",
+    "modifiedDate": "11/08/24"
+  },
+    {
+    "id": 5,
+    "title": "Hola Mundo",
+    "content": "This is a new Note",
+    "creationDate": "11/08/24",
+    "modifiedDate": "11/08/24"
   }
 ]

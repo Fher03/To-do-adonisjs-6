@@ -1,4 +1,5 @@
 import NoteService from '#services/note_service'
+import { Exception } from '@adonisjs/core/exceptions'
 
 export default class Note {
   declare id: number
@@ -27,8 +28,17 @@ export default class Note {
   }
 
   static async getNotesById(id: number) {
-    const notes = await Note.getNotes()
-    const note = notes.find((thisNote) => thisNote.id === id)
+    try {
+      const notes = await this.getNotes()
+      const note = notes.find((thisNote) => thisNote.id === id)
+      return note
+    } catch (error) {
+      throw new Exception(`Could not found a note with the id: ${id}`)
+    }
+  }
+
+  static async updateNote(id: number) {
+    const note = await this.getNotesById(id)
     return note
   }
 }

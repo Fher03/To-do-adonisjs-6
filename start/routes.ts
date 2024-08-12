@@ -7,20 +7,16 @@
 |
 */
 
-import Note from '#models/note'
+const NotesController = () => import('#controllers/notes_controller')
 import router from '@adonisjs/core/services/router'
 
-router
-  .get('/', async (ctx) => {
-    const notes = await Note.getNotes()
-    return ctx.view.render('pages/home', { notes })
-  })
-  .as('notes.show')
+router.get('/', [NotesController, 'home']).as('notes.show')
 
 router
-  .get('/notes/:id', async (ctx) => {
-    const note = await Note.getNotesById(ctx.params.id)
-    return ctx.view.render('pages/notes/index', { note })
-  })
+  .get('/notes/:id', [NotesController, 'note'])
   .where('id', router.matchers.number())
   .as('note.show')
+
+// router.put('/notes/edit/:id', async (ctx) => {
+//   return ctx.view.render('')
+// })
