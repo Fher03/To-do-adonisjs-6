@@ -1,3 +1,4 @@
+import cache from '#services/cache_service'
 import NoteService from '#services/note_service'
 import { Exception } from '@adonisjs/core/exceptions'
 
@@ -29,8 +30,12 @@ export default class Note {
 
   static async getNotesById(id: number) {
     try {
+      if (cache.has(id)) {
+        return cache.get(id)
+      }
       const notes = await this.getNotes()
       const note = notes.find((thisNote) => thisNote.id === id)
+      cache.set(id, note)
       return note
     } catch (error) {
       throw new Exception(`Could not found a note with the id: ${id}`)
