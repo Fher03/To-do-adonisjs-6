@@ -8,13 +8,13 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-@!component('components/nav', {  })
+@!component('components/nav')
 
 <div class="container">
-  <h1>{{title}}</h1>
-  <p>{{content}}</p>
-  <p>Creation Date: {{creationDate}}</p>
-  <p>Modified Date: {{modifiedDate}}</p>
+  <h1>{{note.title}}</h1>
+  <p>{{note.content}}</p>
+  <p>Creation Date: {{note.createdAt}}</p>
+  <p>Modified Date: {{note.updatedAt}}</p>
 </div>
 </body>
 </html>

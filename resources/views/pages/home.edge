@@ -12,9 +12,9 @@
   <div class="container mt-5">
     <h1 class="font-bold text-3xl text-black">My Notes</h1>
     <div class="flex justify-center align-middle ">
-      
-      @!card({title: "Nueva Nota", description: "Lorem Ipsum", sendTo: route('note.show', [4])})
-      @!card({title: "Nueva Nota", description: "Lorem Ipsum", sendTo: route('note.show', [10])})
+      @each(note in notes)
+        @!card({title: note.title, description: note.content, sendTo: route('note.show', [note.id])})
+      @end
     </div>
   </div>
 </body>

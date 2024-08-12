@@ -1,19 +1,34 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import NoteService from '#services/note_service'
 
-export default class Note extends BaseModel {
-  @column({ isPrimary: true })
+export default class Note {
   declare id: number
 
-  @column()
   declare title: string
 
-  @column()
   declare content: string
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+  declare createdAt: string
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime
+  declare updatedAt: string
+
+  static async getNotes() {
+    let notes = []
+    const allNotes = await NoteService.readNotes()
+    for (const note of allNotes) {
+      const myNote = new Note()
+      myNote.id = note.id
+      myNote.title = note.title
+      myNote.content = note.content
+      myNote.createdAt = note.creationDate
+      myNote.updatedAt = note.modifiedDate
+      notes.push(myNote)
+    }
+    return notes
+  }
+
+  static async getNotesById(id: number) {
+    const notes = await Note.getNotes()
+    const note = notes.find((thisNote) => thisNote.id === id)
+    return note
+  }
 }

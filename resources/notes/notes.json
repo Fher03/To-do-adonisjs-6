@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "title": "My First Note",
+    "content": "lorem ipsum",
+    "creationDate": "11/08/24",
+    "modifiedDate": "11/08/24"
+  },
+  
+  {
+    "id": 2,
+    "title": "Another Note",
+    "content": "lorem ipsum",
+    "creationDate": "11/08/24",
+    "modifiedDate": "11/08/24"
+  },
+  
+  {
+    "id": 3,
+    "title": "A Last Note",
+    "content": "lorem ipsum",
+    "creationDate": "11/08/24",
+    "modifiedDate": "11/08/24"
+  }
+]

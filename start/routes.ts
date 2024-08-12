@@ -7,22 +7,20 @@
 |
 */
 
+import Note from '#models/note'
 import router from '@adonisjs/core/services/router'
 
 router
-  .get('/', (ctx) => {
-    return ctx.view.render('pages/home')
+  .get('/', async (ctx) => {
+    const notes = await Note.getNotes()
+    return ctx.view.render('pages/home', { notes })
   })
   .as('notes.show')
 
 router
-  .get('/notes/:id', (ctx) => {
-    return ctx.view.render('pages/notes/index', {
-      title: 'Mi primera Nota',
-      content: 'lorem ipsum',
-      creationDate: '11/08/24',
-      modifiedDate: '11/08/24',
-    })
+  .get('/notes/:id', async (ctx) => {
+    const note = await Note.getNotesById(ctx.params.id)
+    return ctx.view.render('pages/notes/index', { note })
   })
   .where('id', router.matchers.number())
   .as('note.show')
