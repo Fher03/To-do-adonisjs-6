@@ -6,4 +6,15 @@ export default class NoteService {
     const parsedContent = JSON.parse(content)
     return parsedContent
   }
+
+  static async createNotes(newNote: any) {
+    let notes = await this.readNotes()
+    newNote.id = notes.length ? notes[notes.length - 1].id + 1 : 1
+    const currentDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '/')
+    newNote.createdAt = currentDate
+    newNote.updatedAt = currentDate
+    notes.push(newNote)
+    await fs.writeFile('resources/notes/notes.json', JSON.stringify(notes, null, 2))
+    console.log('Nota agregada')
+  }
 }

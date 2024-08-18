@@ -31,6 +31,7 @@ export default class Note {
   static async getNotesById(id: number) {
     try {
       if (cache.has(id)) {
+        console.log(`Cache hit: ${id}`)
         return cache.get(id)
       }
       const notes = await this.getNotes()
@@ -45,5 +46,17 @@ export default class Note {
   static async updateNote(id: number) {
     const note = await this.getNotesById(id)
     return note
+  }
+
+  static async createNote(title: string, description: string) {
+    const notes = await this.getNotes()
+    console.log(notes.length + 1)
+    const myNewNote = new Note()
+    myNewNote.id = notes.length + 1
+    myNewNote.title = title
+    myNewNote.content = description
+    myNewNote.createdAt = '18/02/18'
+    myNewNote.updatedAt = '18/02/18'
+    NoteService.createNotes(myNewNote)
   }
 }

@@ -11,4 +11,10 @@ export default class NotesController {
     const note = await Note.getNotesById(params.id)
     return view.render('pages/notes/index', { note })
   }
+
+  async createNote({ request, response }: HttpContext) {
+    const { title, description } = request.only(['title', 'description'])
+    Note.createNote(title, description)
+    return response.redirect('/')
+  }
 }
