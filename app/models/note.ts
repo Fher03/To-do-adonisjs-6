@@ -21,8 +21,8 @@ export default class Note {
       myNote.id = note.id
       myNote.title = note.title
       myNote.content = note.content
-      myNote.createdAt = note.creationDate
-      myNote.updatedAt = note.modifiedDate
+      myNote.createdAt = note.createdAt
+      myNote.updatedAt = note.updatedAt
       notes.push(myNote)
     }
     return notes
@@ -37,6 +37,7 @@ export default class Note {
       const notes = await this.getNotes()
       const note = notes.find((thisNote) => thisNote.id === id)
       cache.set(id, note)
+      console.log(note)
       return note
     } catch (error) {
       throw new Exception(`Could not found a note with the id: ${id}`)
@@ -49,14 +50,11 @@ export default class Note {
   }
 
   static async createNote(title: string, description: string) {
-    const notes = await this.getNotes()
-    console.log(notes.length + 1)
+    let notes = await NoteService.readNotes()
     const myNewNote = new Note()
     myNewNote.id = notes.length + 1
     myNewNote.title = title
     myNewNote.content = description
-    myNewNote.createdAt = '18/02/18'
-    myNewNote.updatedAt = '18/02/18'
     NoteService.createNotes(myNewNote)
   }
 }

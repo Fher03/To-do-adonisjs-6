@@ -1,22 +1,22 @@
 [
   {
-    "id": 2,
-    "title": "Esta es mi nueva nota",
-    "content": "Nta nev",
-    "createdAt": "18/02/18",
-    "updatedAt": "18/02/18"
-  },
-  {
-    "id": 3,
-    "title": "Darth Vader",
-    "content": "Esta es una nu",
+    "id": 1,
+    "title": "Otra nota",
+    "content": "ksadnf",
     "createdAt": "18/08/2024",
     "updatedAt": "18/08/2024"
   },
   {
-    "id": 4,
-    "title": "Otra nota",
-    "content": "Mi otra nota",
+    "id": 2,
+    "title": "asdasd",
+    "content": "asdasd",
+    "createdAt": "18/08/2024",
+    "updatedAt": "18/08/2024"
+  },
+  {
+    "id": 3,
+    "title": "asdasd",
+    "content": "asdasd",
     "createdAt": "18/08/2024",
     "updatedAt": "18/08/2024"
   }
