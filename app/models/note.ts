@@ -37,24 +37,26 @@ export default class Note {
       const notes = await this.getNotes()
       const note = notes.find((thisNote) => thisNote.id === id)
       cache.set(id, note)
-      console.log(note)
       return note
     } catch (error) {
       throw new Exception(`Could not found a note with the id: ${id}`)
     }
   }
 
-  static async updateNote(id: number) {
-    const note = await this.getNotesById(id)
-    return note
-  }
-
   static async createNote(title: string, description: string) {
     let notes = await NoteService.readNotes()
+    const currentDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '/')
     const myNewNote = new Note()
     myNewNote.id = notes.length + 1
     myNewNote.title = title
     myNewNote.content = description
-    NoteService.createNotes(myNewNote)
+    myNewNote.createdAt = currentDate
+    myNewNote.updatedAt = 'Not edited yet'
+    NoteService.writeNotes(myNewNote)
+  }
+
+  static async updateNote(id: number) {
+    const note = await this.getNotesById(id)
+    return note
   }
 }

@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> AdonisJS - A fully featured web framework for Node.js </title>
-
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
+@layout()
   @!component('components/nav')
-    <div class="w-3/5 mx-auto ">
+
+    <div class="w-3/5 mx-auto">
       <div class="container mx-auto grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
         <h1 class="my-5 col-span-full text-center font-bold text-3xl text-black">My Notes</h1>
         @each(note in notes)
           <div>
-            @!card({title: note.title, description: note.content, sendTo: route('note.show', [note.id])})
-          </div>
+            @!card({title: note.title, description: note.content, sendTo: route('note.show', [note.id]), deleteTo: route('note.delete', [note.id])})
+            </div>
         @end
       </div>
     </div>
 
-
-</body>
-</html>
+@end

@@ -2,6 +2,10 @@
     <div class="p-7 flex-shrink-0">
         <a href="{{sendTo}}" class="mb-2 text-lg hover:text-blue-300 hover:transition-all font-bold leading-none tracking-tight">{{title}}</a>
         <p class="mb-5 text-neutral-500">{{description}}</p>
-        {{-- <a href="{editTask}">Edit Task</a> --}}
+        <form action="{{deleteTo}}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta nota?');">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <button class="px-4 py-2 text-white bg-red-700 rounded" type="submit">Eliminar</button>
+        </form>
     </div>
 </div>

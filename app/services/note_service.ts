@@ -7,14 +7,15 @@ export default class NoteService {
     return parsedContent
   }
 
-  static async createNotes(newNote: any) {
+  static async writeNotes(newNote: any) {
     let notes = await this.readNotes()
-    const currentDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '/')
-    newNote.createdAt = currentDate
-    newNote.updatedAt = currentDate
     notes.push(newNote)
-    console.log(newNote)
     await fs.writeFile('resources/notes/notes.json', JSON.stringify(notes, null, 2))
-    console.log('Nota agregada')
+  }
+
+  static async deleteNotes(id: number) {
+    let content = await this.readNotes()
+    let newContent = content.filter((note: any) => note.id !== Number(id))
+    await fs.writeFile('resources/notes/notes.json', JSON.stringify(newContent))
   }
 }

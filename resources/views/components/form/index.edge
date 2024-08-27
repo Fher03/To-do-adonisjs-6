@@ -1,0 +1,22 @@
+<!-- Formulario para ingresar un título y una descripción -->
+<form action="{{route('creating.note')}}" method="POST" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+  <!-- Campo para el título -->
+  {{ csrfField() }}
+  <div class="mb-4">
+    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Título</label>
+    <input type="text" id="title" name="title" placeholder="Ingrese el título" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+  </div>
+
+  <!-- Campo para la descripción -->
+  <div class="mb-6">
+    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+    <textarea id="description" name="description" rows="4" placeholder="Ingrese la descripción" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" contenteditable="Hello" required></textarea>
+  </div>
+
+  <!-- Botón de envío -->
+  <div>
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      Crear
+    </button>
+  </div>
+</form>

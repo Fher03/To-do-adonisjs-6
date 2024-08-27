@@ -1,4 +1,5 @@
 import Note from '#models/note'
+import NoteService from '#services/note_service'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class NotesController {
@@ -15,6 +16,11 @@ export default class NotesController {
   async createNote({ request, response }: HttpContext) {
     const { title, description } = request.only(['title', 'description'])
     Note.createNote(title, description)
+    return response.redirect('/')
+  }
+
+  async destroy({ response, params }: HttpContext) {
+    NoteService.deleteNotes(params.id)
     return response.redirect('/')
   }
 }
