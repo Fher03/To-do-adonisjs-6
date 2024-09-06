@@ -6,10 +6,9 @@
         <h1 class="my-5 col-span-full text-center font-bold text-3xl text-black">My Notes</h1>
         @each(note in notes)
           <div>
-            @!card({title: note.title, description: note.content, sendTo: route('note.show', [note.id]), deleteTo: route('note.delete', [note.id])})
+            @!card({title: note.name, description: note.description, sendTo: route('note.show', [note.id]), deleteTo: route('note.delete', [note.id])})
             </div>
         @end
       </div>
     </div>
-
 @end

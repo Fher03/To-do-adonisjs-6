@@ -3,6 +3,10 @@ import Note from '#models/note'
 
 export const NoteFactory = factory
   .define(Note, async ({ faker }) => {
-    return {}
+    return {
+      name: faker.word.words(),
+      description: faker.lorem.paragraph(),
+      createdBy: 2,
+    }
   })
   .build()

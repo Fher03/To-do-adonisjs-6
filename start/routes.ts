@@ -16,7 +16,7 @@ router.get('/', [NotesController, 'home']).as('notes.show')
 
 //Mostrar notas por ID
 router
-  .get('/notes/:id', [NotesController, 'note'])
+  .get('/notes/:id', [NotesController, 'searchNote'])
   .where('id', router.matchers.number())
   .as('note.show')
 
