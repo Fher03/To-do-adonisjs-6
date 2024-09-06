@@ -1,17 +1,24 @@
 import cache from '#services/cache_service'
 import NoteService from '#services/note_service'
 import { Exception } from '@adonisjs/core/exceptions'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { DateTime } from 'luxon'
 
-export default class Note {
+export default class Note extends BaseModel {
+  @column({ isPrimary: true })
   declare id: number
 
-  declare title: string
+  @column()
+  declare name: string
 
-  declare content: string
+  @column()
+  declare description: string
 
-  declare createdAt: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
 
-  declare updatedAt: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
 
   static async getNotes() {
     let notes = []
@@ -19,8 +26,8 @@ export default class Note {
     for (const note of allNotes) {
       const myNote = new Note()
       myNote.id = note.id
-      myNote.title = note.title
-      myNote.content = note.content
+      myNote.name = note.title
+      myNote.description = note.content
       myNote.createdAt = note.createdAt
       myNote.updatedAt = note.updatedAt
       notes.push(myNote)
@@ -45,13 +52,10 @@ export default class Note {
 
   static async createNote(title: string, description: string) {
     let notes = await NoteService.readNotes()
-    const currentDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '/')
     const myNewNote = new Note()
     myNewNote.id = notes.length + 1
-    myNewNote.title = title
-    myNewNote.content = description
-    myNewNote.createdAt = currentDate
-    myNewNote.updatedAt = 'Not edited yet'
+    myNewNote.name = title
+    myNewNote.description = description
     NoteService.writeNotes(myNewNote)
   }
 
