@@ -2,9 +2,11 @@
   @!component('components/nav')
   
   <div class="container">
-    <h1>{{note.title}}</h1>
-    <p>{{note.content}}</p>
-    <p>Creation Date: {{note.createdAt}}</p>
-    <p>Modified Date: {{note.updatedAt}}</p>
+    <h1 class="text-5xl text-indigo-700 text-center">{{note.name}}</h1>
+    <div class="container flex flex-col gap-4">
+      <p>{{note.description}}</p>
+      <p>Modified Date: {{note.updatedAt}}</p>
+      <p>Creation Date: {{note.createdAt}}</p>
+    </div>
   </div>
 @end

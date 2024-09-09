@@ -1,7 +1,8 @@
 <div class="rounded-lg overflow-hidden border border-neutral-950 bg-slate-200 text-neutral-700 shadow-sm w-full">
-    <div class="p-7 flex-shrink-0">
+    <div class="p-7 flex-shrink-0 min-h-40">
         <a href="{{sendTo}}" class="mb-2 text-lg hover:text-blue-300 hover:transition-all font-bold leading-none tracking-tight">{{title}}</a>
-        <p class="mb-5 text-neutral-500">{{description}}</p>
+        <p class="mb-5 text-neutral-500">{{truncate(description, 20)}}</p>
+        
         <form action="{{deleteTo}}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta nota?');">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">

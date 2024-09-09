@@ -7,7 +7,7 @@
         @each(note in notes)
           <div>
             @!card({title: note.name, description: note.description, sendTo: route('note.show', [note.id]), deleteTo: route('note.delete', [note.id])})
-            </div>
+          </div>
         @end
       </div>
     </div>

@@ -8,7 +8,7 @@ export default class NotesController {
   }
 
   async searchNote({ view, params }: HttpContext) {
-    const note = await Note.findByOrFail(params.id)
+    const note = await Note.findBy('id', params.id)
     return view.render('pages/notes/index', { note })
   }
 
