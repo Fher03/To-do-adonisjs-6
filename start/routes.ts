@@ -12,7 +12,13 @@ const CachesController = () => import('#controllers/caches_controller')
 import router from '@adonisjs/core/services/router'
 
 //Pagina Principal
-router.get('/', [NotesController, 'home']).as('notes.show')
+router.get('/', [NotesController, 'home']).as('notes.home.show')
+
+//Personal Notes
+router.get('/notes/personal', [NotesController, 'personalNotes']).as('notes.personal.show')
+
+//Work Notes
+router.get('/notes/work', [NotesController, 'workNotes']).as('notes.work.show')
 
 //Mostrar notas por ID
 router

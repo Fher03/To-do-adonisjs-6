@@ -8,10 +8,20 @@
   </div>
 
   <!-- Campo para la descripción -->
-  <div class="mb-6">
+  <div class="mb-1">
     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
     <textarea id="description" name="description" rows="4" placeholder="Ingrese la descripción" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" contenteditable="Hello" required></textarea>
   </div>
+
+  <div class="mb-6">
+    <label for="type" class="block mb-2 text-sm font-medium text-black">Choose Note Type</label>
+    <select id="type" name="type" class="bg-gray-50  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600">
+      <option class="text-black" selected disabled>-- Choose one --</option>
+      <option value="PERSONAL">Personal</option>
+      <option value="WORK">Work</option>
+    </select>
+  </div>
+
 
   <!-- Botón de envío -->
   <div>

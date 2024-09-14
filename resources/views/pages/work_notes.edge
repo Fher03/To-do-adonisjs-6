@@ -1,0 +1,15 @@
+@layout()
+  @!component('components/nav')
+
+    <div class="w-3/5 mx-auto">
+      <div class="container mx-auto grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+        <h1 class="my-5 col-span-full text-center font-bold text-3xl text-black">Work Notes</h1>
+        @each(note in workNotes)
+          <div>
+            @!card({title: note.name, description: note.description, sendTo: route('note.show', [note.id]), deleteTo: route('note.delete', [note.id])})
+          </div>
+        @end
+      </div>
+    </div>
+@end
+    

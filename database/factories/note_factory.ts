@@ -10,3 +10,15 @@ export const NoteFactory = factory
     }
   })
   .build()
+
+export const WorkNotesFactory = factory
+  .define(Note, async ({ faker }) => {
+    return {
+      name: faker.hacker.phrase(),
+      description: faker.lorem.paragraph(2),
+      createdBy: 2,
+      noteType: 'WORK',
+    }
+  })
+
+  .build()
