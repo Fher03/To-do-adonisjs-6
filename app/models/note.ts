@@ -1,5 +1,6 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, scope } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import User from './user.js'
 
 export default class Note extends BaseModel {
   @column({ isPrimary: true })
@@ -19,6 +20,10 @@ export default class Note extends BaseModel {
 
   @column()
   declare createdBy: number
+
+  static personalNotes = scope((query) => {
+    query.where('note_type', 'PERSONAL').where('created_by', 2)
+  })
 
   // static async getNotes() {
   //   let notes = []

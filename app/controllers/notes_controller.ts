@@ -3,8 +3,11 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class NotesController {
   async home({ view }: HttpContext) {
-    const notes = await Note.all()
-    return view.render('pages/home', { notes })
+    const personalNotes = await Note.query()
+      .apply((scope) => scope.personalNotes())
+      .orderBy('id', 'desc')
+      .limit(9)
+    return view.render('pages/home', { personalNotes })
   }
 
   async searchNote({ view, params }: HttpContext) {
